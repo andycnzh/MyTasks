@@ -1,0 +1,13 @@
+E:\Work\Projects\MyTask\MyTask\Bin\Debug\ApplicationIcon.png
+E:\Work\Projects\MyTask\MyTask\Bin\Debug\Background.png
+E:\Work\Projects\MyTask\MyTask\Bin\Debug\MyTask.dll
+E:\Work\Projects\MyTask\MyTask\Bin\Debug\MyTask.pdb
+E:\Work\Projects\MyTask\MyTask\Bin\Debug\AppManifest.xaml
+E:\Work\Projects\MyTask\MyTask\Bin\Debug\MyTask.xap
+E:\Work\Projects\MyTask\MyTask\obj\Debug\ResolveAssemblyReference.cache
+E:\Work\Projects\MyTask\MyTask\obj\Debug\App.g.i.cs
+E:\Work\Projects\MyTask\MyTask\obj\Debug\MainPage.g.i.cs
+E:\Work\Projects\MyTask\MyTask\obj\Debug\MyTask.g.resources
+E:\Work\Projects\MyTask\MyTask\obj\Debug\MyTask.dll
+E:\Work\Projects\MyTask\MyTask\obj\Debug\MyTask.pdb
+E:\Work\Projects\MyTask\MyTask\obj\Debug\XapCacheFile.xml
