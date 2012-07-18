@@ -11,3 +11,15 @@ E:\Work\Projects\MyTask\MyTask\obj\Debug\MyTask.g.resources
 E:\Work\Projects\MyTask\MyTask\obj\Debug\MyTask.dll
 E:\Work\Projects\MyTask\MyTask\obj\Debug\MyTask.pdb
 E:\Work\Projects\MyTask\MyTask\obj\Debug\XapCacheFile.xml
+D:\Work\Projects\MyTasks\MyTask\Bin\Debug\ApplicationIcon.png
+D:\Work\Projects\MyTasks\MyTask\Bin\Debug\Background.png
+D:\Work\Projects\MyTasks\MyTask\Bin\Debug\MyTask.dll
+D:\Work\Projects\MyTasks\MyTask\Bin\Debug\MyTask.pdb
+D:\Work\Projects\MyTasks\MyTask\Bin\Debug\AppManifest.xaml
+D:\Work\Projects\MyTasks\MyTask\Bin\Debug\MyTask.xap
+D:\Work\Projects\MyTasks\MyTask\obj\Debug\App.g.i.cs
+D:\Work\Projects\MyTasks\MyTask\obj\Debug\MainPage.g.i.cs
+D:\Work\Projects\MyTasks\MyTask\obj\Debug\MyTask.g.resources
+D:\Work\Projects\MyTasks\MyTask\obj\Debug\MyTask.dll
+D:\Work\Projects\MyTasks\MyTask\obj\Debug\MyTask.pdb
+D:\Work\Projects\MyTasks\MyTask\obj\Debug\XapCacheFile.xml

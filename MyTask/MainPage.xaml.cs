@@ -18,7 +18,8 @@ namespace MyTask
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        Task oneTask = new Task();
+
+        IsolatedStorageFile appStorage = IsolatedStorageFile.GetUserStoreForApplication();
 
         // IsoloatedStroage file 
         string fileName = "tasks.xml";
@@ -36,14 +37,11 @@ namespace MyTask
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            oneTask = new Task() { Title = txtAddTask.Text.Trim() };
 
             string taskMessage = "";
             taskMessage = txtAddTask.Text.Trim();
 
             // Write the task into the IsoloatedStroage
-
-            var appStorage = IsolatedStorageFile.GetUserStoreForApplication();
 
             XElement taskElement = new XElement("Task",
                 new XElement("ID", System.Guid.NewGuid()),
@@ -51,32 +49,28 @@ namespace MyTask
                 new XElement("CreateDate", DateTime.Now.ToString()),
                 new XElement("DueDate", ""),
                 new XElement("Comment", ""),
-                new XElement("HasDone", "0")
+                new XElement("HasDone", false)
                 );
 
+            // Retrieve the XDocument object
             XDocument taskXML = RetrieveTasks();
 
             taskXML.Root.Add(taskElement);
 
-            using (IsolatedStorageFileStream appStream = appStorage.OpenFile(fileName, System.IO.FileMode.OpenOrCreate))
-            {
-                using (StreamWriter sw = new StreamWriter(appStream))
-                {
-                    taskXML.Save(sw);
-                }
-            }
+            SaveTasks(taskXML);
 
             ReadTask();
         }
 
+        // Retrieve the tasks XDocument
         private XDocument RetrieveTasks()
         {
-            var appStorage = IsolatedStorageFile.GetUserStoreForApplication();
-            XDocument taskXML= new XDocument();
+
+            XDocument taskXML = new XDocument();
 
             if (appStorage.FileExists(fileName))
             {
-                using (IsolatedStorageFileStream appStream = appStorage.OpenFile(fileName, FileMode.Open))
+                using (IsolatedStorageFileStream appStream = appStorage.OpenFile(fileName, FileMode.OpenOrCreate))
                 {
                     using (StreamReader sr = new StreamReader(appStream))
                     {
@@ -90,32 +84,62 @@ namespace MyTask
             return taskXML;
         }
 
-        private void ReadTask()
+        // Save the XDocument to IsoloatedStorageFile.
+        private void SaveTasks(XDocument taskXML)
         {
-            var appStorage = IsolatedStorageFile.GetUserStoreForApplication();
-            XDocument taskXML;
-
             if (appStorage.FileExists(fileName))
             {
-                using (IsolatedStorageFileStream appStream = appStorage.OpenFile(fileName, FileMode.Open))
+                using (IsolatedStorageFileStream appStream = appStorage.OpenFile(fileName, FileMode.Append))
                 {
-                    using (StreamReader sr = new StreamReader(appStream))
+                    using (StreamWriter sw = new StreamWriter(appStream))
                     {
-                        //taskXML = XDocument.Load(sr.ReadToEnd());
-                        taskXML = XDocument.Parse(sr.ReadToEnd());
+                        taskXML.Save(sw);
                     }
                 }
-
-                var tasks = from query in taskXML.Descendants("Task")
-                            select new Task
-                            {
-                                ID = query.Element("ID").Value,
-                                Title = query.Element("Title").Value,
-                                HasDone = query.Element("HasDone").Value
-                            };
-
-                lsbTaskList.ItemsSource = tasks;
             }
+        }
+
+        private void ReadTask()
+        {
+            XDocument taskXML = RetrieveTasks();
+
+            var tasks = from query in taskXML.Descendants("Task")
+                        select new Task
+                        {
+                            ID = query.Element("ID").Value,
+                            Title = query.Element("Title").Value,
+                            HasDone = Convert.ToBoolean(query.Element("HasDone").Value)
+                        };
+
+            lsbTaskList.ItemsSource = tasks;
+        }
+
+        private void ckbTaskList_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkedItem = (CheckBox)sender;
+
+            if (checkedItem == null || checkedItem.Tag == null)
+            {
+                return;
+            }
+
+            // Retrieve the XDocument object
+            XDocument taskXML = RetrieveTasks();
+
+            string ID = checkedItem.Tag.ToString();
+
+            var task = from _task in taskXML.Descendants("Task")
+                       where (_task.Element("ID").Value == ID)
+                       select _task;
+
+            foreach (var el in task)
+            {
+                el.Element("HasDone").Value = Convert.ToBoolean(checkedItem.IsChecked).ToString();
+            }
+
+            SaveTasks(taskXML);
+
+            ReadTask();
         }
     }
 }

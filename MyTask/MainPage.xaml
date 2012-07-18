@@ -52,31 +52,35 @@
                 </Button.Background>
             </Button>
             <ScrollViewer Grid.Row="1"  
-                          HorizontalAlignment="Left" 
+                          HorizontalAlignment="Stretch" 
                           Margin="5,5,0,5" 
                           Name="scvTaskList" 
-                          VerticalAlignment="Stretch"  
-                          HorizontalContentAlignment="Stretch" 
-                         >
+                          VerticalAlignment="Stretch"
+                          VerticalScrollBarVisibility="Visible">
                 <ListBox Name="lsbTaskList" 
                          HorizontalAlignment="Stretch" 
                          VerticalAlignment="Stretch">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <CheckBox HorizontalAlignment="Left"
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Name="ckbTaskList" 
+                                          HorizontalAlignment="Left"
                                           VerticalAlignment="Stretch" 
                                           Width="72" 
                                           Height="72"
-                                          ></CheckBox>
+                                          IsChecked="{Binding HasDone}"
+                                          Tag="{Binding ID}"
+                                          Checked="ckbTaskList_Checked"></CheckBox>
                                 <HyperlinkButton
-                                    Name="taskList"
+                                    Name="hybTaskList"
                                     HorizontalAlignment="Stretch" 
                                     VerticalAlignment="Stretch" 
                                     Height="72" 
                                     Width="380" 
-                                    Margin="5,0" 
-                                    Content="{Binding Title}"></HyperlinkButton>
+                                    Margin="5,0"
+                                    Content="{Binding Title}" 
+                                    Tag="{Binding ID}"
+                                    HorizontalContentAlignment="Left"></HyperlinkButton>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

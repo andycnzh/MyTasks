@@ -1,8 +1,10 @@
-﻿<xapCache source="E:\Work\Projects\MyTask\MyTask\Bin\Debug\MyTask.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="2012/7/15 21:08:29">
-  <file source="E:\Work\Projects\MyTask\MyTask\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="2012/7/15 18:42:19" />
-  <file source="E:\Work\Projects\MyTask\MyTask\Background.png" archivePath="Background.png" lastWriteTime="2012/7/15 18:24:35" />
-  <file source="E:\Work\Projects\MyTask\MyTask\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="2012/7/15 18:24:34" />
-  <file source="E:\Work\Projects\MyTask\MyTask\obj\Debug\MyTask.dll" archivePath="MyTask.dll" lastWriteTime="2012/7/15 21:08:29" />
-  <file source="E:\Work\Projects\MyTask\MyTask\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="2012/7/15 18:24:35" />
-  <file source="E:\Work\Projects\MyTask\MyTask\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="2012/7/15 18:42:19" />
+﻿<xapCache source="D:\Work\Projects\MyTasks\MyTask\Bin\Debug\MyTask.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="7/16/2012 6:40:55 PM">
+  <file source="D:\Work\Projects\MyTasks\MyTask\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="7/16/2012 5:39:24 PM" />
+  <file source="D:\Work\Projects\MyTasks\MyTask\Background.png" archivePath="Background.png" lastWriteTime="7/16/2012 5:35:28 PM" />
+  <file source="D:\Work\Projects\MyTasks\MyTask\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="7/16/2012 5:35:28 PM" />
+  <file source="D:\Work\Projects\MyTasks\MyTask\obj\Debug\MyTask.dll" archivePath="MyTask.dll" lastWriteTime="7/16/2012 6:40:55 PM" />
+  <file source="D:\Work\Projects\MyTasks\MyTask\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="7/16/2012 5:35:28 PM" />
+  <file source="D:\Work\Projects\MyTasks\MyTask\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="7/16/2012 5:39:24 PM" />
+  <file source="D:\Work\Projects\MyTasks\MyTask\Bin\Debug\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="7/16/2012 5:35:28 PM" />
+  <file source="D:\Work\Projects\MyTasks\MyTask\Bin\Debug\Background.png" archivePath="Background.png" lastWriteTime="7/16/2012 5:35:28 PM" />
 </xapCache>

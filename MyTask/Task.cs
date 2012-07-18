@@ -18,6 +18,6 @@ namespace MyTask
         public string DueDate { get; set; }
         public string Comment { get; set; }
         public string Type { get; set; }
-        public string HasDone { get; set; }
+        public bool HasDone { get; set; }
     }
 }
