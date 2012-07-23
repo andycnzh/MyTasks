@@ -23,3 +23,5 @@ D:\Work\Projects\MyTasks\MyTask\obj\Debug\MyTask.g.resources
 D:\Work\Projects\MyTasks\MyTask\obj\Debug\MyTask.dll
 D:\Work\Projects\MyTasks\MyTask\obj\Debug\MyTask.pdb
 D:\Work\Projects\MyTasks\MyTask\obj\Debug\XapCacheFile.xml
+D:\Work\Projects\MyTasks\MyTask\Bin\Debug\Images\appbar.add.rest.png
+D:\Work\Projects\MyTasks\MyTask\Bin\Debug\Images\appbar.delete.rest.png
