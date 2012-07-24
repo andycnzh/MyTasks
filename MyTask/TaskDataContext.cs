@@ -15,6 +15,9 @@ namespace MyTask
 {
     public class TaskDataContext : DataContext
     {
+        // Specify the connection string as a static, used in main page and app.xaml.
+        public static string DBConnectionString = "Data Source=isostore:/MyTaskDB.sdf";
+
         // Pass the connection string to the base class.
         public TaskDataContext(string connectionString)
             : base(connectionString)

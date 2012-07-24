@@ -13,44 +13,92 @@ using Microsoft.Phone.Controls;
 using System.IO.IsolatedStorage;
 using System.IO;
 using System.Xml.Linq;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace MyTask
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class MainPage : PhoneApplicationPage, INotifyPropertyChanged
     {
 
         //IsolatedStorageFile appStorage = IsolatedStorageFile.GetUserStoreForApplication();
 
         // IsoloatedStroage file 
-        //string fileName = @"MyTasks.xml";
-        private const string connectionString = @"isostore:/TaskDB.sdf";
+        //string fileName = @"MyTasks.xml"; 
+
+        #region INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // Used to notify Silverlight that a property has changed
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
+
+        // Data context for the local database
+        private TaskDataContext taskDB;
+
+        // Define an observable collection property that controls can bind to
+        private ObservableCollection<Task> _tasks;
+        public ObservableCollection<Task> Tasks
+        {
+            get { return _tasks; }
+            set
+            {
+                if (_tasks != null)
+                {
+                    _tasks = value;
+                    NotifyPropertyChanged("Tasks");
+                }
+            }
+        }
+
 
         // Constructor
         public MainPage()
         {
             InitializeComponent();
 
-            // Create the database if it does not yet exist.
-            using (TaskDataContext context = new TaskDataContext(connectionString))
-            {
-                if (context.DatabaseExists() == false)
-                {
-                    // Create the database.
-                    context.CreateDatabase();
-                }
-            }
+            taskDB = new TaskDataContext(TaskDataContext.DBConnectionString);
+            this.DataContext = this;
         }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            // Define the query to gather all of the tasks
+            var tasksInDB = from Task task in taskDB.Tasks
+                            select task;
+
+            // Execute the query and place the results into a collection
+            Tasks = new ObservableCollection<Task>(tasksInDB);
+
+            base.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            // Call the base method.
+            base.OnNavigatedFrom(e);
+
+            // Save changes to the database.
+            taskDB.SubmitChanges();
+        }
+
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            lsbTaskList.ItemsSource = GetTasks();
+            //lsbTaskList.ItemsSource = GetTasks();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             AddTask(txtAddTask.Text.Trim());
 
-            lsbTaskList.ItemsSource = GetTasks();
+            //lsbTaskList.ItemsSource = GetTasks();
 
             MessageBox.Show("Added task");
         }
@@ -136,66 +184,67 @@ namespace MyTask
         }
 
         #region DataBase
+        //private IList<Task> GetTasks()
+        //{
+        //    IList<Task> taskList = null;
+
+        //    using (TaskDataContext context = new TaskDataContext(connectionString))
+        //    {
+        //        IQueryable<Task> query = from c in context.Tasks
+        //                                 select c;
+        //        taskList = query.ToList();
+        //    }
+
+        //    return taskList;
+        //}
+
+
         private void AddTask(string title)
         {
-            using (TaskDataContext context = new TaskDataContext(connectionString))
-            {
-                Task task = new Task();
+            Task newTask = new Task();
 
-                task.Title = title;
-                task.DueDate = "";
-                task.Comment = "";
-                task.Type = "";
-                task.HasDone = false;
+            newTask.Title = title;
+            newTask.DueDate = "";
+            newTask.Comment = "";
+            newTask.Type = "";
+            newTask.IsComplete = false;
 
-                context.SubmitChanges();
-            }
+            Tasks.Add(newTask);
+
+            taskDB.Tasks.InsertOnSubmit(newTask);
         }
 
-        private IList<Task> GetTasks()
-        {
-            IList<Task> taskList = null;
 
-            using (TaskDataContext context = new TaskDataContext(connectionString))
-            {
-                IQueryable<Task> query = from c in context.Tasks
-                                         select c;
-                taskList = query.ToList();
-            }
+        //private void UpdateTask(string id, string title)
+        //{
+        //    using (TaskDataContext context = new TaskDataContext(connectionString))
+        //    {
+        //        // find a task to update
+        //        IQueryable<Task> taskQuery = from c in context.Tasks
+        //                                     where c.ID == Convert.ToInt32(id)
+        //                                     select c;
+        //        Task taskToUpdate = taskQuery.FirstOrDefault();
 
-            return taskList;
-        }
+        //        taskToUpdate.Title = title;
 
-        private void UpdateTask(string id, string title)
-        {
-            using (TaskDataContext context = new TaskDataContext(connectionString))
-            {
-                // find a task to update
-                IQueryable<Task> taskQuery = from c in context.Tasks
-                                             where c.ID == Convert.ToInt32(id)
-                                             select c;
-                Task taskToUpdate = taskQuery.FirstOrDefault();
+        //        context.SubmitChanges();
+        //    }
+        //}
 
-                taskToUpdate.Title = title;
+        //private void DeleteTask(string id)
+        //{
+        //    using (TaskDataContext context = new TaskDataContext(connectionString))
+        //    {
+        //        IQueryable<Task> taskQuery = from c in context.Tasks
+        //                                     where c.ID == Convert.ToInt32(id)
+        //                                     select c;
+        //        Task taskToDelete = taskQuery.FirstOrDefault();
 
-                context.SubmitChanges();
-            }
-        }
+        //        context.Tasks.DeleteOnSubmit(taskToDelete);
 
-        private void DeleteTask(string id)
-        {
-            using (TaskDataContext context = new TaskDataContext(connectionString))
-            {
-                IQueryable<Task> taskQuery = from c in context.Tasks
-                                             where c.ID == Convert.ToInt32(id)
-                                             select c;
-                Task taskToDelete = taskQuery.FirstOrDefault();
-
-                context.Tasks.DeleteOnSubmit(taskToDelete);
-
-                context.SubmitChanges();
-            }
-        }
+        //        context.SubmitChanges();
+        //    }
+        //}
         #endregion
     }
 }

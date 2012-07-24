@@ -94,7 +94,9 @@
     <Content Include="Images\appbar.add.rest.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\MyTasks.xml" />
+    <Content Include="Data\MyTasks.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Images\appbar.delete.rest.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

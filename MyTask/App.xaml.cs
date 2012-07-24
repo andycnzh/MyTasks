@@ -61,22 +61,35 @@ namespace MyTask
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
-
+            #region create the xml file in the isostorage
             // Create the xml file to save the user task data.
             // Only create the xml root element.
-            var appStorage = IsolatedStorageFile.GetUserStoreForApplication();
-            if (!appStorage.FileExists(fileName))
-            {
-                XDocument taskXML = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XElement("Tasks"));
+            //var appStorage = IsolatedStorageFile.GetUserStoreForApplication();
+            //if (!appStorage.FileExists(fileName))
+            //{
+            //    XDocument taskXML = new XDocument(new XDeclaration("1.0", "utf-8", "yes"), new XElement("Tasks"));
 
-                using (IsolatedStorageFileStream appStream = appStorage.OpenFile(fileName, System.IO.FileMode.OpenOrCreate))
+            //    using (IsolatedStorageFileStream appStream = appStorage.OpenFile(fileName, System.IO.FileMode.OpenOrCreate))
+            //    {
+            //        using (StreamWriter sw = new StreamWriter(appStream))
+            //        {
+            //            taskXML.Save(sw);
+            //        }
+            //    }
+            //}
+            #endregion
+
+            #region create the database if it does not exist
+            // Create the database if it does not yet exist.
+            using (TaskDataContext context = new TaskDataContext(TaskDataContext.DBConnectionString))
+            {
+                if (context.DatabaseExists() == false)
                 {
-                    using (StreamWriter sw = new StreamWriter(appStream))
-                    {
-                        taskXML.Save(sw);
-                    }
+                    // Create the database.
+                    context.CreateDatabase();
                 }
             }
+            #endregion
 
         }
 

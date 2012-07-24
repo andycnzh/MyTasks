@@ -1,8 +1,8 @@
-﻿<xapCache source="D:\Work\Projects\MyTasks\MyTask\Bin\Debug\MyTask.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="7/23/2012 4:24:40 PM">
+﻿<xapCache source="D:\Work\Projects\MyTasks\MyTask\Bin\Debug\MyTask.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="7/24/2012 11:41:33 AM">
   <file source="D:\Work\Projects\MyTasks\MyTask\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="7/16/2012 5:39:24 PM" />
   <file source="D:\Work\Projects\MyTasks\MyTask\Background.png" archivePath="Background.png" lastWriteTime="7/16/2012 5:35:28 PM" />
   <file source="D:\Work\Projects\MyTasks\MyTask\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="7/16/2012 5:35:28 PM" />
-  <file source="D:\Work\Projects\MyTasks\MyTask\obj\Debug\MyTask.dll" archivePath="MyTask.dll" lastWriteTime="7/23/2012 4:24:39 PM" />
+  <file source="D:\Work\Projects\MyTasks\MyTask\obj\Debug\MyTask.dll" archivePath="MyTask.dll" lastWriteTime="7/24/2012 11:41:32 AM" />
   <file source="D:\Work\Projects\MyTasks\MyTask\Images\appbar.add.rest.png" archivePath="Images\appbar.add.rest.png" lastWriteTime="7/16/2012 5:35:28 PM" />
   <file source="D:\Work\Projects\MyTasks\MyTask\Data\MyTasks.xml" archivePath="Data\MyTasks.xml" lastWriteTime="7/19/2012 12:49:31 PM" />
   <file source="D:\Work\Projects\MyTasks\MyTask\Images\appbar.delete.rest.png" archivePath="Images\appbar.delete.rest.png" lastWriteTime="7/23/2012 4:16:36 PM" />
